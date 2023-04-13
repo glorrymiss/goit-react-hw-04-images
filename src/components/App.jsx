@@ -12,7 +12,7 @@ export const App = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [nameValue, setNameValue] = useState('');
-  const [error, setError] = useState(null);
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(12);
   const [hasBtn, setHasBtn] = useState(false);
@@ -47,11 +47,11 @@ export const App = () => {
           if (page === pages) setHasBtn(false);
         })
 
-        .catch(error => setError(error))
+        .catch(error => console.log(error))
 
         .finally(() => setLoading(false));
     }
-  }, [nameValue, page]);
+  }, [nameValue, page, perPage]);
 
   const hendleLoad = () => {
     setPage(prevState => prevState + 1);
@@ -61,6 +61,7 @@ export const App = () => {
     setNameValue(nameValue);
     setImages([]);
     setPage(1);
+    setPerPage(perPage);
   };
 
   return (
